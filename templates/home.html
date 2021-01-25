@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Text Analysis</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center" style="height: 100px;">
+                <h1>Welcome to Text Analysis</h1>
+            </div>
+            <form method="POST" class="justify-content-center align-items-center">
+                <div class="form-group">
+                    <textarea name="input_text" placeholder="Enter Some Text . . ." rows="10" cols="120">{{ text }}</textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" style="width:100%;" class="btn btn-primary">Evaluate</button>
+                </div>
+            </form>
+            {% if final %}
+            {% if final['compound'] > 0 %}
+            <div>
+                <h2 style="margin-top:50px">The Sentiment for the text is {{ final['pos'] }}% positive</h2>
+                <div class="progress" style="margin-top:25px; margin-bottom:30px">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{ final['pos'] }}%;" aria-valuenow="{{ final['pos'] }}" aria-valuemin="0" aria-valuemax="100">{{ final['pos'] }}%</div>
+                </div>
+            </div>
+            {% elif final['compound'] < 0 %}
+            <div>
+                <h2 style="margin-top:50px">The Sentiment for the text is {{ final['neg'] }}% negative</h2>
+                <div class="progress" style="margin-top:25px; margin-bottom:30px">
+                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: {{ final['neg'] }}%;" aria-valuenow="{{ final['neg'] }}" aria-valuemin="0" aria-valuemax="100">{{ final['neg'] }}%</div>
+                </div>
+            </div>
+            {% elif final['compound'] == 0 %}
+            <div>
+                <h2 style="margin-top:50px">The Sentiment for the text is {{ final['neu'] }}% neutral</h2>
+                <div class="progress" style="margin-top:25px; margin-bottom:30px">
+                    <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: {{ final['neu'] }}%;" aria-valuenow="{{ final['neu'] }}" aria-valuemin="0" aria-valuemax="100">{{ final['neu'] }}%</div>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+        {% if final %}
+        <div class="row justify-content-center align-items-center">
+            <h2 style="margin-bottom:50px">The text is talking about:  {{ final['catego'] }} {{ final['cat_val'] }}%</h2>
+        </div>
+        {% endif %}
+
+        </div>
+    </body>
+</html>
