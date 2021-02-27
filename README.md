@@ -4,6 +4,9 @@ This project contain: text category classification, sentiment analysis and topic
 
 ✅ Keywords: Python, Text Mining, NLP, CNN, Bert, Flask
 
+Demo: https://youtu.be/s20czzIIANk
+
+
 
 ![](screen_shots/5.JPG)
 
